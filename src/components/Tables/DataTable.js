@@ -4,6 +4,7 @@ import ModalForm from '../Modals/Modal'
 
 class DataTable extends Component {
 
+
   deleteItem = id => {
     let confirmDelete = window.confirm('Delete item forever?');
     if(confirmDelete){

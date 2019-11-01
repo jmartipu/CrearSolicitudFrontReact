@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
-import {Container, Row, Col, Table, Button} from 'reactstrap';
-import ModalForm from './components/Modals/Modal';
-import DataTable from './components/Tables/DataTable';
-import LoginForm from "./components/LoginForm";
-import SignupForm from "./components/SignupForm";
-import Nav from "./components/Nav";
+import React, { Component } from 'react'
+import {Container, Row, Col, Table, Button} from 'reactstrap'
+import ModalForm from './components/Modals/Modal'
+import DataTable from './components/Tables/DataTable'
+import LoginForm from "./components/LoginForm"
+import SignupForm from "./components/SignupForm"
+import Nav from "./components/Nav"
 import Solicitudes from "./components/Solicitudes"
+import SelectAplicacion from "./components/SelectAplicacion"
+import SelectTool from "./components/SelectTool"
+import CheckPrueba from "./components/CheckPrueba"
+import CheckTipoEjec from "./components/CheckTipoEjec"
+import DataTableSolicitudes from "./components/DataTableSolicitudes"
 
 
 class App extends Component {
@@ -53,11 +58,6 @@ class App extends Component {
 
       };
 
-    deleteITipoPruebaFromState = (id) => {
-        const updatedItems = this.state.tipos_pruebas.filter(item => item.id !== id)
-        this.setState({ tipos_pruebas: updatedItems })
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -79,7 +79,8 @@ class App extends Component {
             .then(json => {
               this.setState({ username: json.username });
             });
-            fetch('http://127.0.0.1:8000/api/v1/tipopruebas/', {
+            fetch('http://127.0.0.1:8000/api/v1/tipopruebas/'
+                , {
                 headers: {
                     Authorization: `JWT ${localStorage.getItem('token')}`
                 }
@@ -135,36 +136,51 @@ class App extends Component {
                     />
               </nav>
               <div>{this.error_msg}</div>
-            <h5>
-              {this.state.logged_in
-                ? `Hello, ${this.state.username}`
-                : ''}
-            </h5>
+            {/*<h5>*/}
+            {/*  {this.state.logged_in*/}
+            {/*    ? `Hello, ${this.state.username}`*/}
+            {/*    : ''}*/}
+            {/*</h5>*/}
               {form}
-            <div>
-                {this.state.logged_in
-                ?
+            {/*<div>*/}
+            {/*    {this.state.logged_in*/}
+            {/*    ?*/}
 
-                    <div>
-                        <Table responsive hover>
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>TipoPrueba</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {this.tipo_prueba_list}
-                            </tbody>
-                        </Table>
-                            {/*<DataTable items={this.state.tipos_pruebas} updateState={this.updateTipoPrueba} deleteItemFromState={this.deleteITipoPruebaFromState} />*/}
+            {/*        <div>*/}
+            {/*            <Table responsive hover>*/}
+            {/*                <thead>*/}
+            {/*                <tr>*/}
+            {/*                    <th>ID</th>*/}
+            {/*                    <th>TipoPrueba</th>*/}
+            {/*                </tr>*/}
+            {/*                </thead>*/}
+            {/*                <tbody>*/}
+            {/*                {this.tipo_prueba_list}*/}
+            {/*                </tbody>*/}
+            {/*            </Table>*/}
+            {/*                /!*<DataTable items={this.state.tipos_pruebas} updateState={this.updateTipoPrueba} deleteItemFromState={this.deleteITipoPruebaFromState} />*!/*/}
 
-                            <ModalForm buttonLabel="Add Item" addItemToState={this.addTipoPruebaToState}/>
+            {/*                <ModalForm buttonLabel="Add Item" addItemToState={this.addTipoPruebaToState}/>*/}
 
-                    </div>
-                : ''}
+            {/*        </div>*/}
+            {/*    : ''}*/}
 
-            </div>
+            {/*</div>*/}
+              <div>
+                  <SelectAplicacion/>
+              </div>
+              <div>
+                  <SelectTool/>
+              </div>
+              <div>
+                  <CheckPrueba/>
+              </div>
+              <div>
+                  <CheckTipoEjec/>
+              </div>
+              <div>
+                  <DataTableSolicitudes/>
+              </div>
           </div>
         );
     }
