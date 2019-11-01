@@ -45,7 +45,14 @@ class CheckPrueba extends Component{
 
         return (
             <div>
-                {items}
+                <div className="col-md-3">
+                    <div className="col-md-1">
+                        <label className="col-form-label text-info">Tipo de Pruebas: </label>
+                    </div>
+                    <div className="col-md-1">
+                        {items}
+                    </div>
+                </div>
             </div>
         );
     }

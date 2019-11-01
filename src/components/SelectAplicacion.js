@@ -54,9 +54,18 @@ class SelectAplicacion extends Component{
         }
         return (
             <div>
-                <select>
-                    {items}
-                </select>
+                <div className="col-md-3">
+                    <div className="col-md-1">
+                        <label className="col-form-label text-info">Aplicacion: </label>
+                    </div>
+
+                    <div className="col-md-1">
+                        <select className="select2-close-mask text-black-50">
+                            {items}
+                        </select>
+                    </div>
+
+                </div>
             </div>
         );
     }

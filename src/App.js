@@ -110,19 +110,68 @@ class App extends Component {
     }
 
     render() {
-        let form;
+        let form
+        var solicitudForm
 
         switch (this.state.displayed_form) {
           case 'login':
-            form = <LoginForm handle_login={this.handle_login} />;
+            form = <LoginForm handle_login={this.handle_login} />
             break;
           case 'signup':
-            form = <SignupForm handle_signup={this.handle_signup} />;
+            form = <SignupForm handle_signup={this.handle_signup} />
 
 
             break;
           default:
             form = null;
+        }
+
+        if (this.state.logged_in) {
+            solicitudForm =
+                <div >
+                    <div className="row">
+                        <br/>
+                    </div>
+                    <div className="col-md-6">
+                        <form>
+                            <div className="row d-flex justify-content-center">
+                                <div className="form-group">
+                                    <SelectAplicacion/>
+                                </div>
+                                <div className="form-group">
+                                    <SelectTool/>
+                                </div>
+                            </div>
+
+                            <div className="row d-flex justify-content-center">
+                                <div className="form-group">
+                                    <CheckPrueba/>
+                                </div>
+                                <div className="form-group">
+                                    <CheckTipoEjec/>
+                                </div>
+                            </div>
+                            <div className="row d-flex justify-content-center">
+                                <div className="col-md-6">
+                                    <button type="Submit" className="btn btn-primary">Crear</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="row">
+                        <br/>
+                        <br/>
+                    </div>
+                    <div className="row d-flex justify-content-center">
+                        <div className="col-md-10">
+                            <DataTableSolicitudes/>
+                        </div>
+                    </div>
+
+                </div>
+        }
+        else{
+            solicitudForm = <div></div>
         }
 
         return (
@@ -136,51 +185,8 @@ class App extends Component {
                     />
               </nav>
               <div>{this.error_msg}</div>
-            {/*<h5>*/}
-            {/*  {this.state.logged_in*/}
-            {/*    ? `Hello, ${this.state.username}`*/}
-            {/*    : ''}*/}
-            {/*</h5>*/}
               {form}
-            {/*<div>*/}
-            {/*    {this.state.logged_in*/}
-            {/*    ?*/}
-
-            {/*        <div>*/}
-            {/*            <Table responsive hover>*/}
-            {/*                <thead>*/}
-            {/*                <tr>*/}
-            {/*                    <th>ID</th>*/}
-            {/*                    <th>TipoPrueba</th>*/}
-            {/*                </tr>*/}
-            {/*                </thead>*/}
-            {/*                <tbody>*/}
-            {/*                {this.tipo_prueba_list}*/}
-            {/*                </tbody>*/}
-            {/*            </Table>*/}
-            {/*                /!*<DataTable items={this.state.tipos_pruebas} updateState={this.updateTipoPrueba} deleteItemFromState={this.deleteITipoPruebaFromState} />*!/*/}
-
-            {/*                <ModalForm buttonLabel="Add Item" addItemToState={this.addTipoPruebaToState}/>*/}
-
-            {/*        </div>*/}
-            {/*    : ''}*/}
-
-            {/*</div>*/}
-              <div>
-                  <SelectAplicacion/>
-              </div>
-              <div>
-                  <SelectTool/>
-              </div>
-              <div>
-                  <CheckPrueba/>
-              </div>
-              <div>
-                  <CheckTipoEjec/>
-              </div>
-              <div>
-                  <DataTableSolicitudes/>
-              </div>
+              {solicitudForm}
           </div>
         );
     }
