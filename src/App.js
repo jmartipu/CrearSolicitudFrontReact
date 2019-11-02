@@ -11,6 +11,7 @@ import SelectTool from "./components/SelectTool"
 import CheckPrueba from "./components/CheckPrueba"
 import CheckTipoEjec from "./components/CheckTipoEjec"
 import DataTableSolicitudes from "./components/DataTableSolicitudes"
+import CheckPruebas from "./components/CheckPruebas";
 
 
 class App extends Component {
@@ -132,7 +133,7 @@ class App extends Component {
                     <div className="row">
                         <br/>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-8    ">
                         <form>
                             <div className="row d-flex justify-content-center">
                                 <div className="form-group">
@@ -149,6 +150,22 @@ class App extends Component {
                                 </div>
                                 <div className="form-group">
                                     <CheckTipoEjec/>
+                                </div>
+                                <div className="form-group">
+                                    <CheckPruebas/>
+                                </div>
+                            </div>
+                            <div className="row d-flex justify-content-center">
+                                <div className="form-group">
+                                    <div className="col-md-3">
+                                        <div className="col-md-1">
+                                            <label className="col-form-label text-info">Descripcion: </label>
+                                        </div>
+                                        <div className="col-md-1">
+                                            <textarea id="descripcion"></textarea>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div className="row d-flex justify-content-center">
